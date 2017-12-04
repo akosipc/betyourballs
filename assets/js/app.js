@@ -19,3 +19,10 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+import App from './react/App'
+
+onmount("#betting-mount", () => { 
+  App.bettingMount()
+})
+
+onmount()

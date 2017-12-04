@@ -24,7 +24,7 @@ defmodule BetYourBalls.Core.User do
     user
     |> cast(attrs, @required_attrs)
     |> validate_required(@required_attrs)
-    |> validate_format(:email, ~r/\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-]+\z/i)
+    |> validate_format(:email, ~r/\A[^@\s]+@[^@\s]+\z/i)
     |> unique_constraint(:email, on: BetYourBalls.Repo, downcase: true)
     |> unique_constraint(:username, on: BetYourBalls.Repo)
   end

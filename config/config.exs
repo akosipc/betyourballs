@@ -38,5 +38,5 @@ config :coherence,
   router: BetYourBallsWeb.Router,
   messages_backend: BetYourBallsWeb.Coherence.Messages,
   logged_out_url: "/",
-  opts: [:authenticatable]
+  opts: [:authenticatable, :registerable]
 # %% End Coherence Configuration %%

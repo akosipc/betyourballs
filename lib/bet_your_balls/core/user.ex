@@ -22,9 +22,10 @@ defmodule BetYourBalls.Core.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, @required_attrs)
+    |> cast(attrs, @required_attrs ++ coherence_fields)
     |> validate_required(@required_attrs)
     |> validate_format(:email, ~r/\A[^@\s]+@[^@\s]+\z/i)
+    |> validate_coherence(attrs)
     |> unique_constraint(:email, on: BetYourBalls.Repo, downcase: true)
     |> unique_constraint(:username, on: BetYourBalls.Repo)
   end

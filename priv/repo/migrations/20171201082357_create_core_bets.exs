@@ -11,7 +11,7 @@ defmodule BetYourBalls.Repo.Migrations.CreateCoreBets do
       add :user_id, references(:core_users, on_delete: :delete_all)
       add :match_id, references(:core_matches, on_delete: :delete_all)
 
-      add :transaction, :jsonb, default: {}
+      add :transaction, :jsonb
 
       timestamps()
     end

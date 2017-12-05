@@ -37,7 +37,7 @@ config :bet_your_balls, BetYourBallsWeb.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/bet_your_balls_web/views/.*(ex)$},
-      ~r{lib/bet_your_balls_web/templates/.*(eex)$}
+      ~r{lib/bet_your_balls_web/templates/.*(eex|pug)$}
     ]
   ]
 

@@ -3,13 +3,21 @@ defmodule BetYourBallsWeb.MatchController do
 
   alias BetYourBalls.Repo
   alias BetYourBalls.Core.Match
+  alias BetYourBalls.Core.User
 
+  plug BetYourBalls.Plugs.EnsureAdmin when action not in [:index, :show]
   plug :scrub_params, "match" when action in [:create, :update]
 
-  def index(conn, _) do
+  def index(conn = %Plug.Conn{assigns: %{current_user: %User{admin: true}}}, _) do
     matches = Repo.all(from m in Match, order_by: m.inserted_at)
 
-    render(conn, "index.html", matches: matches)
+    render(conn, "index.html", matches: matches, is_admin: true)
+  end
+
+  def index(conn, _) do
+    matches = Repo.all(from m in Match, where: m.status != "pending", order_by: m.inserted_at)
+
+    render(conn, "index.html", matches: matches, is_admin: false)
   end
 
   def new(conn, _) do
@@ -24,7 +32,7 @@ defmodule BetYourBallsWeb.MatchController do
 
     render(conn, "edit.html", match: match, changeset: changeset)
   end
-  
+
   def show(conn, %{"id" => id}) do
     match = Repo.get(Match, id)
 

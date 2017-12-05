@@ -5,16 +5,18 @@ table.table.table-striped
       td Game
       td Status
       td Actions
-    
+
   tbody
-    = for match <- @matches do 
+    = for match <- @matches do
       tr
         td= match.title
         td= match.game_name
         td= match.status
         td
           = link "Show", to: match_path(@conn, :show, match), class: "btn btn-xs btn-primary"
-          = link "Edit", to: match_path(@conn, :edit, match), class: "btn btn-xs btn-warning"
-            
-= link(to: match_path(@conn, :new), class: "btn btn-primary") do
-  span Create a Match
+          = if @current_user.admin do
+            = link "Edit", to: match_path(@conn, :edit, match), class: "btn btn-xs btn-warning"
+
+= if @current_user.admin do
+  = link(to: match_path(@conn, :new), class: "btn btn-primary") do
+    span Create a Match

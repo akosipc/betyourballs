@@ -7,6 +7,7 @@ defmodule BetYourBalls.Core.User do
   schema "core_users" do
     field :email, :string
     field :username, :string
+    field :admin, :boolean
 
     has_many :bets, BetYourBalls.Core.Bet
 

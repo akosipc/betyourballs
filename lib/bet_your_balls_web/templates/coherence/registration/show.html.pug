@@ -1,0 +1,21 @@
+h2= dgettext "coherence", "Show account"
+ul
+  li
+    strong= dgettext "coherence", "Name:"
+    = @user.name
+  = unless (login_field = Coherence.Config.login_field) == :email do
+    li
+      strong= humanize login_field
+      = Map.get(@user, login_field)
+
+    li
+      string= dgettext("coherence", "Email:")
+      = @user.email
+
+= link dgettext("coherence", "Edit"), to: registration_path(@conn, :edit)
+= "|"
+= link dgettext("coherence", "Delete"),
+      to: registration_path(@conn, :delete),
+      method: :delete,
+      data: [confirm: dgettext("coherence", "Are you sure?")]
+

@@ -6,9 +6,12 @@ import BettingContainer from './Betting/containers/BettingContainer'
 const App = {}
 
 App.bettingMount = () => {
+  const elem = document.getElementById('betting-mount')
+
   render(
-    <BettingContainer/>,
-    document.getElementById('betting-mount')
+    <BettingContainer 
+      match={elem.getAttribute('data-match')} />,
+    elem
   )
 }
 

@@ -1,0 +1,28 @@
+br
+
+= form_for @conn, session_path(@conn, :create), [as: :session], fn f ->
+
+  - login_field = Coherence.Config.login_field
+  .form-group
+    = required_label f, login_field, class: "control-label"
+    = text_input f, login_field, class: "form-control", required: ""
+    = error_tag f, login_field
+
+  .form-group
+    = required_label f, dgettext("coherence", "Password"), class: "control-label"
+    = text_input f, :password, class: "form-control", required: ""
+    = error_tag f, :password
+
+  = if @remember do
+    .form-group
+      input(type="checkbox", name="remember", id="remember")
+      label(for="remember")
+        = dgettext("coherence", "Remember Me?")
+    br
+
+  .form-group
+    = submit(dgettext("coherence", "Sign In"), class: "btn btn-primary")
+    = link(dgettext("coherence", "Cancel"), to: Coherence.Config.logged_out_url("/"), class: "btn")
+
+  .form-group
+    = coherence_links(@conn, :new_session)

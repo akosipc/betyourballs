@@ -22,7 +22,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :bet_your_balls,
+config :phoenix, :template_engines,
   pug: PhoenixExpug.Engine
 
 # Import environment specific config. This must remain at the bottom

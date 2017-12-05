@@ -4,8 +4,6 @@ defmodule BetYourBalls.Core.User do
   import Ecto.Changeset
   alias BetYourBalls.Core.User
 
-  @required_fields ~w(email username)a
-
   schema "core_users" do
     field :email, :string
     field :username, :string
@@ -22,7 +20,7 @@ defmodule BetYourBalls.Core.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, @required_attrs ++ coherence_fields)
+    |> cast(attrs, @required_attrs ++ coherence_fields())
     |> validate_required(@required_attrs)
     |> validate_format(:email, ~r/\A[^@\s]+@[^@\s]+\z/i)
     |> validate_coherence(attrs)

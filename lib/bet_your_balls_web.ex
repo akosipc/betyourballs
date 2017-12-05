@@ -23,6 +23,8 @@ defmodule BetYourBallsWeb do
       import Plug.Conn
       import BetYourBallsWeb.Router.Helpers
       import BetYourBallsWeb.Gettext
+
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 

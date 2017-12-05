@@ -1,0 +1,7 @@
+.form-errors
+  ul
+    = for { title, { error, _} } <- @changeset.errors do
+      li
+        = title
+        = error
+    

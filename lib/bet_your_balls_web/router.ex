@@ -43,6 +43,8 @@ defmodule BetYourBallsWeb.Router do
 
   scope "/", BetYourBallsWeb do
     pipe_through :protected
+
+    resources "/matches", MatchController
   end
 
   # Other scopes may use custom stacks.

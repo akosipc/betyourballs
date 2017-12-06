@@ -6,9 +6,15 @@ import BettingProgress from '../components/BettingProgress'
 
 export default class BettingContainer extends Component {
   render () {
+    const { match } = this.props
+
     return (
       <div>
-        <MatchDetails/>
+        <MatchDetails 
+          firstCompetitor={ match.competitor_1 }
+          secondCompetitor={ match.competitor_2 }
+          title={ match.title }
+          gameName={ match.game_name }/>
         <BettingProgress/>
       </div>
     )
@@ -17,6 +23,5 @@ export default class BettingContainer extends Component {
 
 BettingContainer.propTypes = {
   match: PropTypes.object.isRequired,
-  betProgress: PropTypes.object.isRequired
 }
 

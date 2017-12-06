@@ -10,7 +10,7 @@ App.bettingMount = () => {
 
   render(
     <BettingContainer 
-      match={elem.getAttribute('data-match')} />,
+      match={JSON.parse(elem.getAttribute('datamatch'))} />,
     elem
   )
 }

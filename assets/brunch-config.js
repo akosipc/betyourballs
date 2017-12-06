@@ -20,7 +20,14 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        before: [
+          "css/utils/**",
+          "css/overrides/**",
+          "css/components/**"
+        ]
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -48,6 +55,14 @@ exports.config = {
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/],
       presets: ['es2015', 'react', 'stage-0']
+    },
+    sass: {
+      precision: 8
+    },
+    postcss: {
+      processors: [
+        require("autoprefixer")(["> 1%"])
+      ]
     }
   },
 

@@ -8,6 +8,7 @@
     <meta name="author" content="">
 
     <title>Hello BetYourBalls!</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 

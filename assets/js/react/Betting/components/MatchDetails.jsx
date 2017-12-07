@@ -17,10 +17,15 @@ export default class MatchDetails extends Component {
   handleBettingSubmit (evt, {competitorId, targetRef}) {
     const { onBetSubmit } = this.props
     const { betAmountRef } = this.refs
+    const { id } = this.props.firstCompetitor
 
     evt.preventDefault()
 
-    onBetSubmit({amount: targetRef.value, competitorId: competitorId})
+    onBetSubmit({
+      amount: targetRef.value, 
+      competitorId: competitorId,
+      competitorFlag: competitorId === id ? "A" : "B"
+    })
 
     targetRef.value = ""
     this.setState({selectedCompetitor: undefined})

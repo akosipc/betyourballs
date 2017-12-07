@@ -8,7 +8,35 @@ import BettingProgress from '../components/BettingProgress'
 import BettingAPI from '../services/API'
 
 export default class BettingContainer extends Component {
-  handleBet ({amount, competitorId}) {
+  constructor () {
+    super()
+
+    this.state = {
+      firstCompetitorBets: 0.00,
+      secondCompetitorBets: 0.00
+    }
+  }
+
+  componentWillMount () {
+    const { firstCompetitorBets, secondCompetitorBets } = this.props
+
+    this.setState({
+      firstCompetitorBets: firstCompetitorBets,
+      secondCompetitorBets: secondCompetitorBets
+    })
+  }
+
+  updateTotalBets(amount, competitor) {
+    const { firstCompetitorBets, secondCompetitorBets } = this.state
+
+    if (competitor === "A") {
+      this.setState({firstCompetitorBets: firstCompetitorBets + amount})
+    } else if (competitor === "B") {
+      this.setState({secondCompetitorBets: secondCompetitorBets + amount})
+    }
+  }
+
+  handleBet ({amount, competitorId, competitorFlag}) {
     const { onSendNotification, currentUser } = this.props
     const { id } = this.props.match
 
@@ -24,12 +52,8 @@ export default class BettingContainer extends Component {
     BettingAPI.createBet({
       data: data,
       onSuccess: (response) => { 
-        onSendNotification(
-          {
-            message: `Submitted a ${numeral(amount).format("$0,0.000000")} bet`,
-            status: "success"
-          }
-        )
+        onSendNotification( { message: `Submitted a ${numeral(amount).format("$0,0.000000")} bet`, status: "success" })
+        this.updateTotalBets(parseFloat(amount), competitorFlag)
       },
       onError: (message) => { 
         onSendNotification({message: message, status: "danger"}) 
@@ -38,7 +62,8 @@ export default class BettingContainer extends Component {
   }
 
   render () {
-    const { match, firstCompetitorBets, secondCompetitorBets } = this.props
+    const { match } = this.props
+    const { firstCompetitorBets, secondCompetitorBets } = this.state
 
     return (
       <div>
@@ -51,7 +76,6 @@ export default class BettingContainer extends Component {
         <BettingProgress
           firstBets={ firstCompetitorBets }
           secondBets={ secondCompetitorBets }/>
-          
       </div>
     )
   }

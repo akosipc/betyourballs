@@ -5,11 +5,35 @@ import numeral from 'numeral'
 import MatchDetails from '../components/MatchDetails'
 import BettingProgress from '../components/BettingProgress'
 
+import BettingAPI from '../services/API'
+
 export default class BettingContainer extends Component {
   handleBet ({amount}) {
-    const { onSendNotification } = this.props
+    const { onSendNotification, currentUser } = this.props
+    const { id } = this.props.match
 
-    onSendNotification(`Submitted a ${numeral(amount).format("$0,0.00")} bet`)
+    let data = {
+      amount: parseFloat(amount),
+      currency: "USD",
+      status: "pending",
+      match_id: id,
+      user_id: currentUser.id
+    }
+
+    BettingAPI.createBet({
+      data: data,
+      onSuccess: (response) => { console.log(response) 
+        onSendNotification(
+          {
+            message: `Submitted a ${numeral(amount).format("$0,0.00")} bet`,
+            status: "success"
+          }
+        )
+      },
+      onError: (message) => { 
+        onSendNotification({message: message, status: "danger"}) 
+      }
+    })
   }
 
   render () {
@@ -31,5 +55,7 @@ export default class BettingContainer extends Component {
 
 BettingContainer.propTypes = {
   match: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  betProgress: PropTypes.object.isRequired
 }
 

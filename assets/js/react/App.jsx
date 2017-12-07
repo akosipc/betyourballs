@@ -10,7 +10,8 @@ App.bettingMount = () => {
 
   render(
     <BettingRoot
-      match={JSON.parse(elem.getAttribute('data-match'))} />,
+      match={JSON.parse(elem.getAttribute('data-match'))} 
+      currentUser={JSON.parse(elem.getAttribute('data-current-user'))} />,
     elem
   )
 }

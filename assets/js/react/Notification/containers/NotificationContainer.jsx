@@ -11,7 +11,8 @@ export default class NotificationContainer extends Component {
       return (
         <Notification
           key={ index }
-          message={ message }/>
+          status={ message.status }
+          message={ message.message }/>
       )
     })
   }

@@ -26,7 +26,7 @@ defmodule BetYourBalls.Core.Bet do
   end
 
   schema "core_bets" do
-    field :amount, :decimal
+    field :amount, :float
     field :currency, :string
     field :status, :string
     belongs_to :user, BetYourBalls.Core.User

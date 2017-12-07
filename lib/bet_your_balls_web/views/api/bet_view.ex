@@ -5,7 +5,7 @@ defmodule BetYourBallsWeb.Api.BetView do
 
   def render("show.json", %{bet: bet}) do
     %{
-      bet: render_one(bet, BetYourBalls.Api.BetView, "bet.json")
+      bet: render_one(bet, BetYourBallsWeb.Api.BetView, "bet.json")
     }
   end
 
@@ -18,7 +18,7 @@ defmodule BetYourBallsWeb.Api.BetView do
   end
 
   def render("error.json", %{changeset: changeset}) do
-    ApiView.render("error.json", changeset)
+    ApiView.render("error.json", %{changeset: changeset})
   end
 
   def render("delete.json", %{id: id}) do

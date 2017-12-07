@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 export default class Notification extends Component {
   render () {
-    const { message } = this.props
+    const { message, status } = this.props
 
     return (
-      <div className="notification -success">
+      <div className={ `notification -${ status }` }>
         { message }
       </div>
     )
@@ -14,5 +14,6 @@ export default class Notification extends Component {
 }
 
 Notification.propTypes = {
-  message: PropTypes.string.isRequired
+  message: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired
 }

@@ -9,9 +9,13 @@ defmodule BetYourBallsWeb.Api.BetController do
 
     case Repo.insert(changeset) do
       {:ok, bet} ->
-        render(conn, "show.json", bet: bet)
-      {:error, changeset}
-        render(conn, "error.json", changeset: changeset)
+        conn
+        |> put_status(201)
+        |> render("show.json", bet: bet)
+      {:error, changeset} ->
+        conn
+        |> put_status(422)
+        |> render("error.json", changeset: changeset)
     end
   end
 

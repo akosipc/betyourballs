@@ -24,7 +24,7 @@ defmodule BetYourBalls.Core.Match do
     end
   end
 
-  @derive {Poison.Encoder, only: [:title, :game_name, :competitor_1, :competitor_2]}
+  @derive {Poison.Encoder, only: [:id, :title, :game_name, :competitor_1, :competitor_2]}
   schema "core_matches" do
     field :winner, :string
     field :status, :string

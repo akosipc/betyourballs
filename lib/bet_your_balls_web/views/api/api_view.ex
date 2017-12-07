@@ -6,13 +6,10 @@ defmodule BetYourBallsWeb.Api.ApiView do
       errors
       |> Enum.into(%{}, fn {key, {value, _}} -> {key, value} end)
 
-    %{ errors: render_many(error_messages, BetYourBalls.Api.ApiView, "error_message.json") }
+    %{ errors: render_many(error_messages, BetYourBallsWeb.Api.ApiView, "error_message.json") }
   end
 
-  def render("error_message.json", error) do
-    key = Map.keys(error) |> List.first
-    value = Map.get(error, key)
-
+  def render("error_message.json", %{api: {key, value}}) do
     %{
       message: "#{key} #{value}"
     }

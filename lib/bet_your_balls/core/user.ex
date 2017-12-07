@@ -4,6 +4,7 @@ defmodule BetYourBalls.Core.User do
   import Ecto.Changeset
   alias BetYourBalls.Core.User
 
+  @derive {Poison.Encoder, only: [:id, :email]}
   schema "core_users" do
     field :email, :string
     field :username, :string

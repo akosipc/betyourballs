@@ -18,7 +18,9 @@ defmodule BetYourBallsWeb.Api.MatchController do
       {:ok, match} ->
         render(conn, "show.json", match: match)
       {:error, changeset} ->
-        render(conn, "error.json", changeset: changeset)
+        conn
+        |> put_status(422)
+        |> render("error.json", changeset: changeset)
     end
   end
 end

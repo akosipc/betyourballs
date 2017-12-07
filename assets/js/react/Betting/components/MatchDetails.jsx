@@ -20,7 +20,7 @@ export default class MatchDetails extends Component {
 
     evt.preventDefault()
 
-    onBetSubmit({amount: targetRef.value})
+    onBetSubmit({amount: targetRef.value, competitorId: competitorId})
 
     targetRef.value = ""
   }

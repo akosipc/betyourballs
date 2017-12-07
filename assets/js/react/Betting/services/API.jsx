@@ -14,7 +14,7 @@ const BettingAPI = {
       const { errors } = error.response.data
 
       console.error(error.response)
-      onError(errors[0][:message])
+      onError(errors[0]["message"])
     })
   }
 }

@@ -8,7 +8,7 @@ import BettingProgress from '../components/BettingProgress'
 import BettingAPI from '../services/API'
 
 export default class BettingContainer extends Component {
-  handleBet ({amount}) {
+  handleBet ({amount, competitorId}) {
     const { onSendNotification, currentUser } = this.props
     const { id } = this.props.match
 
@@ -17,12 +17,13 @@ export default class BettingContainer extends Component {
       currency: "USD",
       status: "pending",
       match_id: id,
-      user_id: currentUser.id
+      user_id: currentUser.id,
+      competitor_id: competitorId
     }
 
     BettingAPI.createBet({
       data: data,
-      onSuccess: (response) => { console.log(response) 
+      onSuccess: (response) => { 
         onSendNotification(
           {
             message: `Submitted a ${numeral(amount).format("$0,0.00")} bet`,

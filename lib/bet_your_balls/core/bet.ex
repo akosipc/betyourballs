@@ -29,6 +29,7 @@ defmodule BetYourBalls.Core.Bet do
     field :amount, :float
     field :currency, :string
     field :status, :string
+    field :competitor_id, :string
     belongs_to :user, BetYourBalls.Core.User
     belongs_to :match, BetYourBalls.Core.Match
 
@@ -40,8 +41,8 @@ defmodule BetYourBalls.Core.Bet do
   def currency, do: ~w(CHAL USD)
   def status, do: ~w(pending paid void)
 
-  @valid_attrs ~w(amount currency status user_id match_id)a
-  @required_attrs ~w(amount currency user_id match_id)a
+  @valid_attrs ~w(amount currency status user_id match_id competitor_id)a
+  @required_attrs ~w(amount currency user_id match_id competitor_id)a
 
   @doc false
   def changeset(%Bet{} = bet, attrs) do

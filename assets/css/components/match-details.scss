@@ -10,6 +10,9 @@
     font-size: 2em;
     font-weight: 700;
     margin: $pad * 4;
+
+    display: flex;
+    align-items: center;
   }
 
   & > .details {

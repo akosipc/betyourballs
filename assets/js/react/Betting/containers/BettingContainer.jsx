@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import numeral from 'numeral'
 
+import socket from '../../../socket'
+
 import MatchDetails from '../components/MatchDetails'
 import BettingProgress from '../components/BettingProgress'
 
@@ -13,7 +15,9 @@ export default class BettingContainer extends Component {
 
     this.state = {
       firstCompetitorBets: 0.00,
-      secondCompetitorBets: 0.00
+      secondCompetitorBets: 0.00,
+      connected: false
+      
     }
   }
 
@@ -24,6 +28,18 @@ export default class BettingContainer extends Component {
       firstCompetitorBets: firstCompetitorBets,
       secondCompetitorBets: secondCompetitorBets
     })
+  }
+
+  componentDidMount () {
+    const { match } = this.props
+
+    const channel = socket.channel(`match:${match.id}`)
+
+    channel.join()
+      .receive('ok', (response) => { this.setState({connected: true}) })
+      .receive('error', (reason) => { console.error(reason) })
+
+    channel.on('update_price', (response) => { console.log(response) })
   }
 
   updateTotalBets(amount, competitor) {
@@ -63,7 +79,7 @@ export default class BettingContainer extends Component {
 
   render () {
     const { match } = this.props
-    const { firstCompetitorBets, secondCompetitorBets } = this.state
+    const { firstCompetitorBets, secondCompetitorBets, connected } = this.state
 
     return (
       <div>
@@ -72,6 +88,7 @@ export default class BettingContainer extends Component {
           firstCompetitor={ match.competitor_1 }
           secondCompetitor={ match.competitor_2 }
           title={ match.title }
+          connected={ connected }
           gameName={ match.game_name }/>
         <BettingProgress
           firstBets={ firstCompetitorBets }

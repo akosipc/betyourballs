@@ -68,12 +68,19 @@ export default class MatchDetails extends Component {
   }
 
   render () {
-    const { title, gameName, firstCompetitor, secondCompetitor } = this.props
+    const { title, gameName, firstCompetitor, secondCompetitor, connected } = this.props
     const { selectedCompetitor } = this.state
 
     return (
       <div className="match-details">
         <div className="header">
+          { connected ?  
+            <div className="connected-badge -connected">
+            </div> 
+            :
+            <div className="connected-badge">
+            </div>
+          }
           { title }
         </div>
         <div className="details">
@@ -100,5 +107,6 @@ MatchDetails.propTypes = {
     name: PropTypes.string.isRequired
   }),
   title: PropTypes.string.isRequired,
-  gameName: PropTypes.string.isRequired
+  gameName: PropTypes.string.isRequired,
+  connected: PropTypes.bool
 }

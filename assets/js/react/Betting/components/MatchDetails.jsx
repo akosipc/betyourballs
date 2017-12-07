@@ -2,6 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class MatchDetails extends Component {
+  constructor () {
+    super()
+
+    this.state = {
+      selectedCompetitor: undefined
+    }
+  }
+
+  handleCompetitorSelection (id) {
+    this.setState({ selectedCompetitor: id })
+  }
+
   handleBettingSubmit (evt, {competitorId, targetRef}) {
     const { onBetSubmit } = this.props
     const { betAmountRef } = this.refs
@@ -13,47 +25,57 @@ export default class MatchDetails extends Component {
     targetRef.value = ""
   }
 
-  renderBettingActions({ id }) {
+  renderBettingActions() {
+    const { selectedCompetitor } = this.state
+
     let betAmountRef
 
     return (
-      <form onSubmit={ (evt) => { this.handleBettingSubmit(evt, { competitorId: id, targetRef: betAmountRef }) } }>
+      <form 
+        className="form-horizontal"
+        onSubmit={ (evt) => { this.handleBettingSubmit(evt, { competitorId: selectedCompetitor, targetRef: betAmountRef }) } }>
         <input 
           ref={ (el) => { betAmountRef = el } }
           type="number" 
           min="0"
           step="any"/>
+        <button
+          type="submit">
+          Bet!
+        </button>
       </form>
     )
   }
 
   renderCompetitor (competitor) {
-    const { image_url, name } = competitor
+    const { id, image_url, name } = competitor
+    const { selectedCompetitor } = this.state
 
     return (
-      <div>
+      <div 
+        onClick={ () => { this.handleCompetitorSelection(id) } }
+        className={ `competitor ${selectedCompetitor === id ? "-selected" : ""}` }>
         <img src={ image_url }/>
         { name }
-      </div>
+      </div> 
     )
   }
+
   render () {
     const { title, gameName, firstCompetitor, secondCompetitor } = this.props
+    const { selectedCompetitor } = this.state
+
     return (
       <div className="match-details">
         <div className="header">
           { title }
-          { gameName }
         </div>
         <div className="details">
-          <div className="competitor">
-            { this.renderCompetitor(firstCompetitor) }
-            { this.renderBettingActions(firstCompetitor) }
-          </div>
-          <div className="competitor">
-            { this.renderCompetitor(secondCompetitor) }
-            { this.renderBettingActions(secondCompetitor) }
-          </div>
+          { this.renderCompetitor(firstCompetitor) }
+          { this.renderCompetitor(secondCompetitor) }
+        </div>
+        <div className="actions">
+          { this.renderBettingActions() }
         </div>
       </div>
     )

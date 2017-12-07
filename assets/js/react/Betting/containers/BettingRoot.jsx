@@ -30,7 +30,7 @@ export default class BettingRoot extends Component {
     const { match, messages } = this.state
 
     return (
-      <div>
+      <div className="container -centerify">
         <NotificationContainer
           messages={ messages }/>
         <BettingContainer

@@ -23,6 +23,7 @@ export default class MatchDetails extends Component {
     onBetSubmit({amount: targetRef.value, competitorId: competitorId})
 
     targetRef.value = ""
+    this.setState({selectedCompetitor: undefined})
   }
 
   renderBettingActions() {
@@ -37,7 +38,7 @@ export default class MatchDetails extends Component {
         <input 
           ref={ (el) => { betAmountRef = el } }
           type="number" 
-          min="0"
+          min="0.01"
           step="any"/>
         <button
           type="submit">

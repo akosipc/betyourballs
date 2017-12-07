@@ -1,0 +1,43 @@
+@import "../variables";
+
+.betting-progress {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  & > .header {
+    margin: $pad * 2;
+  }
+
+  & > .progress-bar {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+  }
+
+  & > .progress-bar > .bar {
+    background: red;
+    height: $pad * 5 - 4;
+
+    min-width: 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & > .progress-bar > .bar:first-child {
+    background: $orange-bar;
+    border: 1px solid $orange-bar;
+    border-right: 2px solid darken($background-color, 20%);
+    border-radius: $pad 0 0 $pad;
+  }
+
+  & > .progress-bar > .bar:last-child {
+    background: $blue-bar;
+    border: 1px solid $blue-bar;
+    border-left: 2px solid darken($background-color, 20%);
+    border-radius: 0 $pad $pad 0;
+  }
+}

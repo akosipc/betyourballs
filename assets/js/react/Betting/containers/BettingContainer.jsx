@@ -26,7 +26,7 @@ export default class BettingContainer extends Component {
       onSuccess: (response) => { 
         onSendNotification(
           {
-            message: `Submitted a ${numeral(amount).format("$0,0.00")} bet`,
+            message: `Submitted a ${numeral(amount).format("$0,0.000000")} bet`,
             status: "success"
           }
         )
@@ -38,7 +38,7 @@ export default class BettingContainer extends Component {
   }
 
   render () {
-    const { match } = this.props
+    const { match, firstCompetitorBets, secondCompetitorBets } = this.props
 
     return (
       <div>
@@ -48,7 +48,10 @@ export default class BettingContainer extends Component {
           secondCompetitor={ match.competitor_2 }
           title={ match.title }
           gameName={ match.game_name }/>
-        <BettingProgress/>
+        <BettingProgress
+          firstBets={ firstCompetitorBets }
+          secondBets={ secondCompetitorBets }/>
+          
       </div>
     )
   }
@@ -57,6 +60,7 @@ export default class BettingContainer extends Component {
 BettingContainer.propTypes = {
   match: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
-  betProgress: PropTypes.object.isRequired
+  firstCompetitorBets: PropTypes.number.isRequired,
+  secondCompetitorBets: PropTypes.number.isRequired
 }
 

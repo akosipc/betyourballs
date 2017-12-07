@@ -33,6 +33,8 @@ defmodule BetYourBalls.Core.Match do
     embeds_one :competitor_1, BetYourBalls.Core.Match.Competitor
     embeds_one :competitor_2, BetYourBalls.Core.Match.Competitor
 
+    has_many :bets, BetYourBalls.Core.Bet
+
     timestamps()
   end
 

@@ -28,7 +28,7 @@ export default class BettingRoot extends Component {
 
   render () {
     const { match, messages } = this.state
-    const { currentUser } = this.props
+    const { currentUser, firstCompetitorBets, secondCompetitorBets } = this.props
 
     return (
       <div className="container -centerify">
@@ -36,6 +36,8 @@ export default class BettingRoot extends Component {
           messages={ messages }/>
         <BettingContainer
           onSendNotification={ (message) => { this.handleNotification(message) } } 
+          firstCompetitorBets={ firstCompetitorBets }
+          secondCompetitorBets={ secondCompetitorBets }
           currentUser={ currentUser }
           match={ match }/>
       </div>

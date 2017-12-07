@@ -4,6 +4,7 @@ defmodule BetYourBallsWeb.MatchController do
   alias BetYourBalls.Repo
   alias BetYourBalls.Core.Match
   alias BetYourBalls.Core.User
+  alias BetYourBalls.Core.Bet
 
   plug BetYourBalls.Plugs.EnsureAdmin when action not in [:index, :show]
   plug :scrub_params, "match" when action in [:create, :update]
@@ -36,7 +37,10 @@ defmodule BetYourBallsWeb.MatchController do
   def show(conn, %{"id" => id}) do
     match = Repo.get(Match, id)
 
-    render(conn, "show.html", match: match)
+    render(conn, "show.html", 
+      match: match, 
+      competitor_1_amount: bet_amount_aggregator(match, :competitor_1),
+      competitor_2_amount: bet_amount_aggregator(match, :competitor_2))
   end
 
   def create(conn, %{"match" => match_params}) do
@@ -68,5 +72,17 @@ defmodule BetYourBallsWeb.MatchController do
         |> put_flash(:error, "There are some errors encountered")
         |> render("edit.html", changeset: changeset, match: match)
     end
+  end
+
+  # Private Queries
+
+  defp bet_amount_aggregator(%Match{ id: match_id, competitor_1: %{ id: competitor_id } }, :competitor_1) do
+    (from b in Bet, where: b.match_id == ^match_id and b.competitor_id == ^competitor_id)
+    |> Repo.aggregate(:sum, :amount)
+  end
+
+  defp bet_amount_aggregator(%Match{ id: match_id, competitor_2: %{ id: competitor_id } }, :competitor_2) do
+    (from b in Bet, where: b.match_id == ^match_id and b.competitor_id == ^competitor_id)
+    |> Repo.aggregate(:sum, :amount)
   end
 end

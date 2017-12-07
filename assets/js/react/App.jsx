@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import BettingContainer from './Betting/containers/BettingContainer'
+import BettingRoot from './Betting/containers/BettingRoot'
 
 const App = {}
 
@@ -9,8 +9,8 @@ App.bettingMount = () => {
   const elem = document.getElementById('betting-mount')
 
   render(
-    <BettingContainer 
-      match={JSON.parse(elem.getAttribute('datamatch'))} />,
+    <BettingRoot
+      match={JSON.parse(elem.getAttribute('data-match'))} />,
     elem
   )
 }

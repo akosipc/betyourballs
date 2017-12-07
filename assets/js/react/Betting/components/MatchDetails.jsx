@@ -2,6 +2,31 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class MatchDetails extends Component {
+  handleBettingSubmit (evt, {competitorId, targetRef}) {
+    const { onBetSubmit } = this.props
+    const { betAmountRef } = this.refs
+
+    evt.preventDefault()
+
+    onBetSubmit({amount: targetRef.value})
+
+    targetRef.value = ""
+  }
+
+  renderBettingActions({ id }) {
+    let betAmountRef
+
+    return (
+      <form onSubmit={ (evt) => { this.handleBettingSubmit(evt, { competitorId: id, targetRef: betAmountRef }) } }>
+        <input 
+          ref={ (el) => { betAmountRef = el } }
+          type="number" 
+          min="0"
+          step="any"/>
+      </form>
+    )
+  }
+
   renderCompetitor (competitor) {
     const { image_url, name } = competitor
 
@@ -23,9 +48,11 @@ export default class MatchDetails extends Component {
         <div className="details">
           <div className="competitor">
             { this.renderCompetitor(firstCompetitor) }
+            { this.renderBettingActions(firstCompetitor) }
           </div>
           <div className="competitor">
             { this.renderCompetitor(secondCompetitor) }
+            { this.renderBettingActions(secondCompetitor) }
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
-h3= dgettext "coherence", "Edit Account"
+.session-form
+  .heading
+    h3= dgettext "coherence", "Edit Account"
 
-= render "form.html", changeset: @changeset,
-                      label: dgettext("coherence", "Update"),
-                      required: [],
-                      action: registration_path(@conn, :update)
+  = render "form.html", changeset: @changeset,
+                        label: dgettext("coherence", "Update"),
+                        required: [],
+                        action: registration_path(@conn, :update)

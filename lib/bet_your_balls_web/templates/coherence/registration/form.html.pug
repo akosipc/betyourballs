@@ -3,38 +3,38 @@
    .alert.alert-danger
      = dgettext "coherence", "Oops, something went wrong! Please check the errors below."
 
-  .form-group
-    = required_label f, dgettext("coherence", "Username"), class: "control-label"
-    = text_input f, :username, class: "form-control", required: ""
-    = error_tag f, :username
-
-  = unless (login_field = Coherence.Config.login_field) == :email do
+  .fields
     .form-group
-      = required_label f, login_field, class: "control-label"
-      = text_input f, login_field, class: "form-control", required: ""
-      = error_tag f, login_field
+      = text_input f, :username, class: "form-control", required: "", placeholder: "Username"
+      = error_tag f, :username
 
-  .form-group
-    = required_label f, dgettext("coherence", "Email"), class: "control-label"
-    = text_input f, :email, class: "form-control", required: ""
-    = error_tag f, :email
+    = unless (login_field = Coherence.Config.login_field) == :email do
+      .form-group
+        = text_input f, login_field, class: "form-control", required: "", placeholder: login_field
+        = error_tag f, login_field
 
-  = if Coherence.Config.require_current_password and not is_nil(@changeset.data.id) do
     .form-group
-      = required_label f, :current_password, class: "control-label"
-      = password_input f, :current_password, [class: "form-control"] ++ @required
-      = error_tag f, :current_password
+      = text_input f, :email, class: "form-control", required: "", placeholder: "Email"
+      = error_tag f, :email
 
-  .form-group
-    = required_label f, dgettext("coherence", "Password"), class: "control-label"
-      = password_input f, :password, [class: "form-control"] ++ @required
-    = error_tag f, :password
+    = if Coherence.Config.require_current_password and not is_nil(@changeset.data.id) do
+      .form-group
+        = password_input f, :current_password, [class: "form-control", placeholder: "Current Password"] ++ @required
+        = error_tag f, :current_password
 
-  .form-group
-    = required_label f, dgettext("coherence", "Password Confirmation"), class: "control-label"
-      = password_input f, :password_confirmation, [class: "form-control"] ++ @required
-    = error_tag f, :password_confirmation
+    .form-group
+      = password_input f, :password, [class: "form-control", placeholder: "Password"] ++ @required
+      = error_tag f, :password
 
-  .form-group
-    = submit @label, class: "btn btn-primary"
-    = link dgettext("coherence", "Cancel"), to: Coherence.Config.logged_out_url("/"), class: "btn"
+    .form-group
+      = password_input f, :password_confirmation, [class: "form-control", placeholder: "Password Confirmation"] ++ @required
+      = error_tag f, :password_confirmation
+
+  .actions
+    .form-group
+      = submit @label, class: "btn btn-primary btn-block"
+  .footer
+    p
+      | Already have an account?
+      = link dgettext("coherence", "Sign in"), to: session_path(@conn, :new)
+

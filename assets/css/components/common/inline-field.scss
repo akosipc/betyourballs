@@ -1,0 +1,20 @@
+$field-height: 30px;
+
+.inline-field {
+  display: flex;
+  margin: 16px 0;
+
+  > .lbl {
+    flex: 0 1 100% * (3 / 12);
+    text-overflow: ellipsis;
+    height: $field-height;
+    line-height: $field-height;
+    overflow: hidden;
+    font-weight: 700;
+  }
+
+  > .control {
+    flex: 0 1 100% * (9 / 12);
+    width: 75%;
+  }
+}

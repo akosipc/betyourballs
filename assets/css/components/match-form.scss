@@ -15,4 +15,68 @@
   .actions > .btn:not(:first-child) {
     margin-left: 8px;
   }
+
+  .control {
+    vertical-align: middle;
+  }
+
+  .radio-control {
+    position: relative;
+    margin-right: 16px;
+    cursor: pointer;
+    line-height: 2;
+  }
+
+  .radio-control > .field {
+    height: 1em;
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .radio-control > .text {
+    font-size: 14px;
+    margin-left: 22px;
+  }
+
+  .radio-control > .checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+
+  .radio-control:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .radio-control:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .radio-control input:checked ~ .checkmark {
+    background-color: #868fa5;
+  }
+
+  .radio-control > .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .radio-control input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .radio-control > .checkmark:after {
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+  }
 }

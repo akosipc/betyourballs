@@ -20,6 +20,23 @@
             .control
               = text_input f, :game_name, class: "form-control"
               = error_tag f, :game_name
+          .inline-field
+            span.lbl
+              = label f, :status
+            .control
+              label.radio-control
+                = radio_button f, :status, "pending", class: "field"
+                span.checkmark
+                span.text Pending
+              label.radio-control
+                = radio_button f, :status, "ongoing", class: "field"
+                span.checkmark
+                span.text Ongoing
+              label.radio-control
+                = radio_button f, :status, "finished", class: "field"
+                span.checkmark
+                span.text Finished
+              = error_tag f, :status
 
       .panel.panel-primary
         .panel-heading

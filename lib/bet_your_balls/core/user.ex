@@ -17,11 +17,12 @@ defmodule BetYourBalls.Core.User do
   end
 
   @required_attrs ~w(username email)a
+  @permitted_attrs ~w(admin)a
 
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, @required_attrs ++ coherence_fields())
+    |> cast(attrs, @required_attrs ++ @permitted_attrs ++ coherence_fields())
     |> validate_required(@required_attrs)
     |> validate_format(:email, ~r/\A[^@\s]+@[^@\s]+\z/i)
     |> validate_coherence(attrs)

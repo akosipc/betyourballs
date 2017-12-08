@@ -10,7 +10,7 @@ br
 
   .form-group
     = required_label f, dgettext("coherence", "Password"), class: "control-label"
-    = text_input f, :password, class: "form-control", required: ""
+    = password_input f, :password, class: "form-control"
     = error_tag f, :password
 
   = if @remember do

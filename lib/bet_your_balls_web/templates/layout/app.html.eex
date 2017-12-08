@@ -10,6 +10,7 @@
     <title>Bet Your Balls!</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <script src="https://authedmine.com/lib/captcha.min.js"></script>
   </head>
 
   <body>

@@ -20,6 +20,11 @@ br
         = dgettext("coherence", "Remember Me?")
     br
 
+  div.coinhive-captcha( data-hashes="256" data-disable-elements="button[type='submit']" data-whitelabel="false" data-key="LAtfyjvIMsGBjR74vGDF4f8tXYnvONPq")
+    em
+      | Loading Captcha..
+      | If it doesn't load, please disable Adblock!
+
   .form-group
     = submit(dgettext("coherence", "Sign In"), class: "btn btn-primary")
     = link(dgettext("coherence", "Cancel"), to: Coherence.Config.logged_out_url("/"), class: "btn")

@@ -1,0 +1,18 @@
+.match-form {
+  & {
+    margin: 48px auto;
+    max-width: 700px;
+  }
+
+  .actions {
+    display: flex;
+  }
+
+  .actions > .btn:first-child {
+    margin-left: auto;
+  }
+
+  .actions > .btn:not(:first-child) {
+    margin-left: 8px;
+  }
+}

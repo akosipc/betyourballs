@@ -1,6 +1,6 @@
 .panel {
   margin-bottom: 20px;
-  background-color: #868fa5;
+  background-color: #303542;
   border: 1px solid transparent;
   border-radius: 4px;
 }
@@ -17,10 +17,22 @@
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 16px;
+  font-size: 18px;
   color: inherit;
 }
 
 .panel-default {
-  background-color: #868fa5;
+  border-color: #222732;
+}
+
+.panel-default > .panel-heading {
+  background-color: #222732;
+}
+
+.panel-primary {
+  border-color: #34495e;
+}
+
+.panel-primary > .panel-heading {
+  background-color: #34495e;
 }

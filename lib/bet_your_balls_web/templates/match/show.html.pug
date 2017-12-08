@@ -1,0 +1,8 @@
+- {:ok, match_as_json} = Poison.encode(@match)
+- {:ok, user_as_json} = Poison.encode(assigns[:current_user])
+
+#betting-mount(data-match="#{match_as_json}", 
+  data-current-user="#{user_as_json}", 
+  data-competitor1-amount="#{@competitor_1_amount}",
+  data-competitor2-amount="#{@competitor_2_amount}")
+

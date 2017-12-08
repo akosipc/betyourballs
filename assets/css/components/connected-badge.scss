@@ -1,0 +1,14 @@
+@import '../variables';
+
+.connected-badge {
+  background: $alert-danger;
+  border-radius: 100%;
+  height: $pad + 4;
+  width: $pad + 4;
+  content: " ";
+  margin-right: $pad * 2;
+  
+  &.-connected {
+    background: $alert-success;
+  }
+}

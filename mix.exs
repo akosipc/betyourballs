@@ -41,9 +41,10 @@ defmodule BetYourBalls.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:phoenix_expug, "~> 0.1"},
+      {:phoenix_expug, "~> 0.1.1"},
       {:coherence, "~> 0.5"},
-      {:timex, "~> 3.1"}
+      {:timex, "~> 3.1"},
+      {:poison, "~> 3.1"}
     ]
   end
 

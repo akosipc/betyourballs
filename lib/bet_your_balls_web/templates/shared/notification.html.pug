@@ -1,0 +1,8 @@
+div.notification-container
+  = if info = get_flash(@conn, :info) do
+    div.notification.-success
+      = info
+
+  = if error = get_flash(@conn, :error) do
+    div.notification.-danger
+      = error

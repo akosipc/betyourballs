@@ -1,0 +1,44 @@
+@import "../variables";
+
+.notification-container {
+  position: absolute;
+  right: -10%;
+  top: 7%;
+
+  & > .notification {
+    width: 20%;
+    padding: $pad * 2;
+    border-radius: $pad / 2;
+
+    text-align: center;
+
+    position: fixed;
+    right: -400px;
+
+    animation: react-alert 7s 1;
+    transition-property: right;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+    box-shadow: 0px 1px 1px 2px rgba($black, 0.2);
+    min-width: 200px;
+    min-height: 20px;
+  }
+
+  & > .notification.-success {
+    background: $alert-success;
+  }
+
+  & > .notification.-danger {
+    background: $alert-danger;
+  }
+}
+
+@keyframes react-alert {
+  0%, 100% { 
+    right: -400px;
+  }
+
+  1%, 90% { 
+    right: 50px;
+  }
+}

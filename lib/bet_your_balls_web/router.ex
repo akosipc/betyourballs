@@ -23,6 +23,7 @@ defmodule BetYourBallsWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
   end
 
   scope "/" do
@@ -46,9 +47,11 @@ defmodule BetYourBallsWeb.Router do
 
     resources "/matches", MatchController
   end
+  
+  scope "/wormhole", BetYourBallsWeb.Api do
+    pipe_through :api
 
-  # Other scopes may use custom stacks.
-  # scope "/api", BetYourBallsWeb do
-  #   pipe_through :api
-  # end
+    resources "/matches", MatchController
+    resources "/bets", BetController
+  end
 end

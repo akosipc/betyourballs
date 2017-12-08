@@ -8,7 +8,7 @@ export default class BettingBar extends Component {
 
     return (
       <div className="bar" style={{ width: `${barWidth}%` }}>
-        { numeral(amount).format("$0,0.00000") }
+        { numeral(amount).format("$0,0.00") }
       </div>
     )
   }

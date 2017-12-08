@@ -51,7 +51,6 @@ export default class BettingContainer extends Component {
     } else if (competitor_2.id === competitorId) {
       return "B"
     }
-
   }
 
   updateTotalBets(amount, competitor) {
@@ -80,7 +79,7 @@ export default class BettingContainer extends Component {
     BettingAPI.createBet({
       data: data,
       onSuccess: (response) => { 
-        onSendNotification( { message: `Submitted a ${numeral(amount).format("$0,0.000000")} bet`, status: "success" })
+        onSendNotification( { message: `Submitted a ${numeral(amount).format("$0,0.00")} bet`, status: "success" })
       },
       onError: (message) => { 
         onSendNotification({message: message, status: "danger"}) 

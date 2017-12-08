@@ -1,22 +1,25 @@
-table.table.table-striped
-  thead
-    tr
-      td Match Name
-      td Game
-      td Status
-      td Actions
+.container
+  .matches-table
+    h1.heading
+      | Matches
+      span.actions
+        = if @current_user.admin do
+          = link "Create a Match", to: match_path(@conn, :new), class: "btn btn-primary"
+    table
+      thead
+        tr
+          th Match Name
+          th Game
+          th Status
+          th Actions
 
-  tbody
-    = for match <- @matches do
-      tr
-        td= match.title
-        td= match.game_name
-        td= match.status
-        td
-          = link "Show", to: match_path(@conn, :show, match), class: "btn btn-xs btn-primary"
-          = if @current_user.admin do
-            = link "Edit", to: match_path(@conn, :edit, match), class: "btn btn-xs btn-warning"
-
-= if @current_user.admin do
-  = link(to: match_path(@conn, :new), class: "btn btn-primary") do
-    span Create a Match
+      tbody
+        = for match <- @matches do
+          tr
+            td= match.title
+            td= match.game_name
+            td= match.status
+            td
+              = link "Show", to: match_path(@conn, :show, match), class: "btn btn-xs btn-primary"
+              = if @current_user.admin do
+                = link "Edit", to: match_path(@conn, :edit, match), class: "btn btn-xs btn-default"

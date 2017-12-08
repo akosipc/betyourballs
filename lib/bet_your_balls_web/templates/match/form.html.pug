@@ -1,51 +1,64 @@
-= form_for @changeset, @action, fn f ->
-  - if @changeset.action do
-    = render BetYourBallsWeb.SharedView, "errors.html", changeset: @changeset
+.container
+  .match-form
+    = form_for @changeset, @action, fn f ->
+      - if @changeset.action do
+        = render BetYourBallsWeb.SharedView, "errors.html", changeset: @changeset
 
-  .panel.panel-default
-    .panel-heading
-      h3.panel-title Basic Information
-    .panel-body
-      .form-group
-        = label f, :title
-        = text_input f, :title, class: "form-control"
-        = error_tag f, :title
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Basic Information
+        .panel-body
+          .inline-field
+            span.lbl
+              = label f, :title
+            .control
+              = text_input f, :title, class: "form-control"
+              = error_tag f, :title
+          .inline-field
+            span.lbl
+              = label f, :game_name
+            .control
+              = text_input f, :game_name, class: "form-control"
+              = error_tag f, :game_name
 
-      .form-group
-        = label f, :game_name
-        = text_input f, :game_name, class: "form-control"
-        = error_tag f, :game_name
-  
-  .panel.panel-primary
-    .panel-heading
-      h3.panel-title Competitor 1 Details
-    .panel-body
-      = inputs_for f, :competitor_1, fn c1 ->
-        .form-group
-          = label c1, :name
-          = text_input c1, :name, class: "form-control"
-          = error_tag c1, :name
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title Competitor 1 Details
+        .panel-body
+          = inputs_for f, :competitor_1, fn c1 ->
+            .inline-field
+              span.lbl
+                = label c1, :name
+              .control
+                = text_input c1, :name, class: "form-control"
+                = error_tag c1, :name
 
-        .form-group
-          = label c1, :image_url
-          = text_input c1, :image_url, class: "form-control"
-          = error_tag c1, :image_url
+            .inline-field
+              span.lbl
+                = label c1, :image_url
+              .control
+                = text_input c1, :image_url, class: "form-control"
+                = error_tag c1, :image_url
 
-  .panel.panel-primary
-    .panel-heading
-      h3.panel-title Competitor 2 Details
-    .panel-body
-      = inputs_for f, :competitor_2, fn c2 ->
-        .form-group
-          = label c2, :name
-          = text_input c2, :name, class: "form-control"
-          = error_tag c2, :name
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title Competitor 2 Details
+        .panel-body
+          = inputs_for f, :competitor_2, fn c2 ->
+            .inline-field
+              span.lbl
+                = label c2, :name
+              .control
+                = text_input c2, :name, class: "form-control"
+                = error_tag c2, :name
 
-        .form-group
-          = label c2, :image_url
-          = text_input c2, :image_url, class: "form-control"
-          = error_tag c2, :image_url
+            .inline-field
+              span.lbl
+                = label c2, :image_url
+              .control
+                = text_input c2, :image_url, class: "form-control"
+                = error_tag c2, :image_url
 
-  .form-actions
-    = submit "Save", class: "btn btn-primary"
-
+      .actions
+        = submit "Save", class: "btn btn-primary"
+        = link "Back", to: match_path(@conn, :index), class: "btn btn-default"

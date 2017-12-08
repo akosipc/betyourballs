@@ -1,0 +1,42 @@
+.session-form {
+  & {
+    margin: 48px auto;
+    max-width: 400px;
+    background-color: #34495e;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  & > .heading > h3 {
+    font-size: 40px;
+    margin-bottom: 32px;
+  }
+
+  & > form > .fields {
+    margin-bottom: 32px;
+  }
+
+  & > form > .footer {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  & > form > .footer a {
+    text-decoration: none;
+    color: #868fa5;
+  }
+
+  & > form > .footer a:hover {
+    text-decoration: underline;
+  }
+
+  & > form > .coinhive-captcha {
+    margin-bottom: 32px;
+  }
+
+  & > form > .coinhive-captcha > iframe {
+    display: block;
+    margin: 0 auto;
+  }
+}

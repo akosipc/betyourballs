@@ -25,7 +25,8 @@ exports.config = {
         before: [
           "css/utils/**",
           "css/overrides/**",
-          "css/components/**"
+          "css/components/**",
+          "css/base/**"
         ]
       }
     },

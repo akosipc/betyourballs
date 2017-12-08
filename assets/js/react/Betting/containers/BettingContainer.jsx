@@ -17,7 +17,6 @@ export default class BettingContainer extends Component {
       firstCompetitorBets: 0.00,
       secondCompetitorBets: 0.00,
       connected: false
-      
     }
   }
 
@@ -39,7 +38,20 @@ export default class BettingContainer extends Component {
       .receive('ok', (response) => { this.setState({connected: true}) })
       .receive('error', (reason) => { console.error(reason) })
 
-    channel.on('update_price', (response) => { console.log(response) })
+    channel.on('update_price', ({amount, competitor_id}) => { 
+      this.updateTotalBets(parseFloat(amount), this.figureCompetitorFlag(competitor_id))
+    })
+  }
+
+  figureCompetitorFlag (competitorId) {
+    const { competitor_1, competitor_2 } = this.props.match
+
+    if (competitor_1.id === competitorId) {
+      return "A"
+    } else if (competitor_2.id === competitorId) {
+      return "B"
+    }
+
   }
 
   updateTotalBets(amount, competitor) {
@@ -69,7 +81,6 @@ export default class BettingContainer extends Component {
       data: data,
       onSuccess: (response) => { 
         onSendNotification( { message: `Submitted a ${numeral(amount).format("$0,0.000000")} bet`, status: "success" })
-        this.updateTotalBets(parseFloat(amount), competitorFlag)
       },
       onError: (message) => { 
         onSendNotification({message: message, status: "danger"}) 

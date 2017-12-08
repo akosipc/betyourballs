@@ -8,7 +8,13 @@ defmodule BetYourBallsWeb.Api.BetController do
     changeset = Bet.changeset(%Bet{}, bet_params)
 
     case Repo.insert(changeset) do
-      {:ok, bet} ->
+      {:ok, %{match_id: match_id} = bet} ->
+        BetYourBallsWeb.Endpoint.broadcast("match:#{match_id}", "update_price", %{
+          id: bet.id,
+          competitor_id: bet.competitor_id,
+          amount: bet.amount
+        })
+
         conn
         |> put_status(201)
         |> render("show.json", bet: bet)

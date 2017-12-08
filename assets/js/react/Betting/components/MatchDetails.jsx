@@ -40,15 +40,21 @@ export default class MatchDetails extends Component {
       <form 
         className="form-horizontal"
         onSubmit={ (evt) => { this.handleBettingSubmit(evt, { competitorId: selectedCompetitor, targetRef: betAmountRef }) } }>
-        <input 
-          ref={ (el) => { betAmountRef = el } }
-          type="number" 
-          min="0.01"
-          step="any"/>
-        <button
-          type="submit">
-          Bet!
-        </button>
+        <div className="form-group">
+          <input 
+            ref={ (el) => { betAmountRef = el } }
+            disabled={ selectedCompetitor === undefined ? true : false }
+            className="form-control"
+            type="number" 
+            min="0.01"
+            step="any"/>
+          <button
+            disabled={ selectedCompetitor === undefined ? true : false }
+            className="btn btn-primary"
+            type="submit">
+            Bet!
+          </button>
+        </div>
       </form>
     )
   }

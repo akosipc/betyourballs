@@ -44,4 +44,12 @@
   & > .actions {
     margin: $pad * 4;
   }
+
+  & > .actions > .form-horizontal > .form-group {
+    display: flex;
+  }
+  
+  & > .actions > .form-horizontal > .form-group > .form-control {
+    margin-right: $pad * 2;
+  }
 }
